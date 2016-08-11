@@ -6,14 +6,14 @@ import Bootstrap from 'bootstrap-without-jquery';
 
 import Layout from './pages/Layout';
 import Favourites from './pages/Favourites';
-import Todos from './pages/Todos';
+import Products from './pages/Products';
 import Settings from './pages/Settings';
 
 const app = document.getElementById('app');
 ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={Layout} >
-      <IndexRoute component={Todos} ></IndexRoute>
+      <IndexRoute component={Products} ></IndexRoute>
       <Route path="favourites" name="favourites" component={Favourites} ></Route>
       <Route path="settings" name="settings" component={Settings} ></Route>
     </Route>

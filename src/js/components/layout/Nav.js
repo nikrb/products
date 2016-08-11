@@ -17,12 +17,12 @@ export default class Nav extends React.Component {
   render() {
     const { location } = this.props;
     const { collapsed } = this.state;
-    const todosClass = location.pathname === "/" ? "active" : "";
-    const favouritesClass = location.pathname.match(/^\/archives/) ? "active" : "";
+    const productsClass = location.pathname === "/" ? "active" : "";
+    const favouritesClass = location.pathname.match(/^\/favourites/) ? "active" : "";
     const settingsClass = location.pathname.match(/^\/settings/) ? "active" : "";
     const navClass = collapsed ? "collapse" : "";
 
-    // note unknown prop
+    // note unknown prop onlyActiveOnIndex
     // <li className={featuredClass} onlyActiveOnIndex={true}>
 
     return (
@@ -38,8 +38,8 @@ export default class Nav extends React.Component {
           </div>
           <div className={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
-              <li className={todosClass} >
-                <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Todos</IndexLink>
+              <li className={productsClass} >
+                <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Products</IndexLink>
               </li>
               <li className={favouritesClass}>
                 <Link to="favourites" onClick={this.toggleCollapse.bind(this)}>Favourites</Link>

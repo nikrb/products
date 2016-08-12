@@ -5,7 +5,7 @@ var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 
 var db;
-var url = 'mongodb://localhost:27017/todosdb';
+var url = 'mongodb://localhost:27017/productsdb';
 MongoClient.connect(url, function(err, dbc) {
   if( err){
     console.log( "mongo connect error:", err);
@@ -33,30 +33,39 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/api/todo', function(req, res) {
-  db.collection("todos").find({}).toArray(function(err, docs) {
+app.get('/api/product', function(req, res) {
+  db.collection("product").find({}).toArray(function(err, docs) {
     if( err){
-      console.error( "GET /api/todo failed:", err)
+      console.error( "GET /api/product failed:", err);
+      res.json([]);
     } else {
-      console.log( "get/api/todo results:", docs);
+      console.log( "get/api/product results:", docs);
       res.json(docs);
     }
   });
 });
 
-app.post('/api/todo', function(req, res) {
-  let newTodo = {
-    text: req.body.text,
-    complete: false
+app.post('/api/product', function(req, res) {
+  let new_product = {
+    category: req.body.category,
+    price: req.body.price,
+    stocked: req.body.stocked,
+    name: req.body.name
   };
-  console.log( "creating new todo:", newTodo);
-  db.collection("todos").insertOne(newTodo, function(err, result) {
+  console.log( "creating new product:", new_product);
+  db.collection("product").insertOne(new_product, function(err, result) {
     if( err){
-      console.log( "POST /api/todo failed:", err);
+      console.log( "POST /api/product failed:", err);
+      res.json( { error: err});
     } else {
       const newId = result.insertedId;
-      console.log( "new todo id:", newId);
-      res.json( { _id: newId, text: newTodo.text, complete: newTodo.complete });
+      console.log( "new product id:", newId);
+      res.json( { _id: newId,
+                  category: new_product.category,
+                  price: new_product.price,
+                  stocked: new_product.stocked,
+                  name: new_product.name
+                });
     }
   });
 });

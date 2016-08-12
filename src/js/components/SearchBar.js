@@ -6,7 +6,7 @@ export default class SearchBar extends React.Component {
     this.props.onUserInput(
       this.refs.filterTextInput.value,
       this.refs.inStockOnlyInput.checked
-    )
+    );
   }
   render() {
     return (

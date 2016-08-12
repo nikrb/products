@@ -2,19 +2,31 @@ import React from 'react';
 
 import FilterableProductTable from '../components/FilterableProductTable';
 
-var PRODUCTS = [
-  {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
-  {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
-  {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
-  {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
-  {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
-  {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
-];
+import ProductStore from '../stores/ProductStore';
+import * as ProductActions from '../actions/ProductActions';
 
 export default class Products extends React.Component {
+  constructor(){
+    super();
+    this.getProducts = this.getProducts.bind(this);
+    this.state = {
+      products : []
+    };
+  }
+  componentWillMount(){
+    ProductStore.on( 'change', this.getProducts);
+    ProductActions.loadProducts();
+  }
+  componentWillUnmount(){
+    ProductStore.removeListener( 'change', this.getProducts);
+  }
+  getProducts(){
+    this.setState( { products : ProductStore.getAll()})
+  }
   render(){
+
     return (
-      <FilterableProductTable products={PRODUCTS} />
+      <FilterableProductTable products={this.state.products} />
     );
   }
 }

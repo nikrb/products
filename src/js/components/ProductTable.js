@@ -8,13 +8,15 @@ export default class ProductTable extends React.Component {
     var rows = [];
     var lastCategory = null;
     this.props.products.forEach(function(product) {
-      if (product.name.indexOf(this.props.filterText) === -1 || (!product.stocked && this.props.inStockOnly)) {
+      const re = new RegExp( this.props.filterText, 'i');
+      if( ! re.test( product.name.toLowerCase()) ||
+          (!product.stocked && this.props.inStockOnly)){
         return;
       }
       if (product.category !== lastCategory) {
         rows.push(<ProductCategoryRow category={product.category} key={product.category} />);
       }
-      rows.push(<ProductRow product={product} key={product.name} />);
+      rows.push(<ProductRow product={product} key={product._id} />);
       lastCategory = product.category;
     }.bind(this));
     return (

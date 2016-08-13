@@ -43,3 +43,4 @@ dist/*
 !dist/index.html
 
 bakup/
+dox/*lock*

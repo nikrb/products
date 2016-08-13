@@ -1,16 +1,25 @@
 import React from "react";
 
 export default class Purchase extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+
+    };
+  }
   render() {
+    const categories = [
+      "Food", "Sporting Goods", "Electronics"
+    ];
     return (
       <div className="container" >
         <h1>Purchase</h1>
         <form className="well">
           <div className="form-group" >
             <label htmlFor="category" className="col-sm-2 control-label">Category</label>
-              <select id="category" className="input-sm">
-                <option>Food</option>
-              </select>
+            <select id="category" className="input-sm" >
+              {categories.map( cat => <option key={cat} value={cat}>{cat}</option>)}
+            </select>
           </div>
           <div className="form-group" >
             <label htmlFor="product_name" className="col-sm-2 control-label">Name</label>

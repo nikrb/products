@@ -59,11 +59,13 @@ app.get( '/api/category', function( req, res){
 });
 
 app.post('/api/product', function(req, res) {
+  // category, name, cost_total, weight_total, unit_total
   let new_product = {
     category: req.body.category,
-    price: req.body.price,
-    stocked: req.body.stocked,
-    name: req.body.name
+    name: req.body.name,
+    cost_total: req.body.cost_total,
+    weight_total: req.body.weight_total,
+    unit_total: req.body.unit_total
   };
   console.log( "creating new product:", new_product);
   db.collection("product").insertOne(new_product, function(err, result) {

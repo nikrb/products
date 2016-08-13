@@ -37,10 +37,22 @@ app.get('/api/product', function(req, res) {
   db.collection("product").find({}).toArray(function(err, docs) {
     if( err){
       console.error( "GET /api/product failed:", err);
-      res.json([]);
+      res.json( { error:err});
     } else {
       console.log( "get/api/product results:", docs);
       res.json(docs);
+    }
+  });
+});
+
+app.get( '/api/category', function( req, res){
+  db.collection( "category").find({}).toArray( function( err, docs){
+    if( err){
+      console.error( "GET /api/categories failed:", err);
+      res.json( { error: err});
+    } else {
+      console.log( "GET /api/categories results:", docs);
+      res.json( docs);
     }
   });
 });

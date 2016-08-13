@@ -12,3 +12,9 @@ db.product.insert([
   {category: 'Electronics', price: '399.99', stocked: false, name: 'iPhone 5'},
   {category: 'Electronics', price: '199.99', stocked: true, name: 'Nexus 7'}
 ]);
+db.category.remove({});
+db.category.insert( [
+  { title: "Food"},
+  { title: "Sporting Goods"},
+  { title: "Electronics"},
+]);

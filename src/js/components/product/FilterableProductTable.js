@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SearchBar from './SearchBar';
+import SearchBar from '../SearchBar';
 import ProductTable from './ProductTable';
 
 export default class FilterableProductTable extends React.Component {

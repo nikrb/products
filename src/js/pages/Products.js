@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FilterableProductTable from '../components/FilterableProductTable';
+import FilterableProductTable from '../components/product/FilterableProductTable';
 
 import ProductStore from '../stores/ProductStore';
 import * as ProductActions from '../actions/ProductActions';

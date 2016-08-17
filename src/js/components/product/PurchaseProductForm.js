@@ -30,7 +30,7 @@ export default class PurchaseProductForm extends React.Component{
           </div>
           <div className="form-group" >
             <label htmlFor="cost" className="col-sm-2 control-label" >Cost</label>
-            <input id="cost" className="input-sm"  onChange={this.props.productChange}/>
+            <input id="cost" className="input-sm"  value={this.props.cost_total} readOnly/>
           </div>
           <div className="form-group">
             <label htmlFor="create_button" className="col-sm-2"/>

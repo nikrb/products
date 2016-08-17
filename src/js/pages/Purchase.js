@@ -22,17 +22,18 @@ export default class Purchase extends React.Component {
       cost_per: 0 // price per iten/weight
     };
   }
+  // FIXME: we get three updates for each change (e.g. amount)
   setTotals( ){
-    console.log( "@setTotals item or weight:", this.state.item_or_weight);
     const {cost_per} = this.state;
     if( this.state.item_or_weight === "item"){
       this.setState( { unit_total: this.state.amount, weight_total: 0});
-      this.setState( { cost_total: cost_per * this.state.unit_total});
+      const total = cost_per * this.state.unit_total;
+      this.setState( { cost_total: total.toFixed(2)});
     } else {
       this.setState( { unit_total: 0, weight_total: this.state.amount});
-      this.setState( { cost_total: cost_per * this.state.weight_total});
+      const total = cost_per * this.state.weight_total;
+      this.setState( { cost_total: total.toFixed(2)});
     }
-    console.log( "new state:", this.state);
   }
   productChange(e){
     console.log( "productChange field id:", e.target.id);
@@ -77,7 +78,7 @@ export default class Purchase extends React.Component {
     this.setState( { categories: CategoryStore.getAll()});
   }
   productCreated(){
-    console.log( "create new product");
+    console.log( "new product created");
     // TODO: put up a message bar with close button
   }
   createProduct( e){
@@ -90,6 +91,7 @@ export default class Purchase extends React.Component {
       <div className="container" >
         <h1>Purchase</h1>
         <PurchaseProductForm categories={this.state.categories}
+                            cost_total={this.state.cost_total}
                             createProduct={this.createProduct.bind(this)}
                             productChange={this.productChange.bind(this)}/>
       </div>

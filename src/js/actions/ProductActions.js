@@ -14,10 +14,6 @@ export function loadProducts(){
 
 export function createProduct( category, name, cost_total, weight_total,
                                 unit_total, stocked ){
-  console.log( `creating product category[${category}]
-                name[${name}] cost_total[${cost_total}]
-                weight_total[${weight_total}] unit_total[${unit_total}]
-                 stocked[${stocked}]` );
   dispatcher.dispatch( {type: "CREATING_PRODUCT"});
   axios.post( "/api/product", { category, name, cost_total, weight_total,
                                   unit_total, stocked})

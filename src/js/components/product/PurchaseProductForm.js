@@ -1,23 +1,6 @@
 import React from 'react';
 
 export default class PurchaseProductForm extends React.Component{
-  constructor(){
-    super();
-  }
-  handleAmount( e){
-    this.props.changeAmount( e.target.value);
-    /*
-    console.log( "handleAmount:", e.target.value);
-    const val = parseFloat( e.target.value);
-    if( Number.isNaN( val)){
-      console.log( "amount is not a valid number");
-    } else {
-      console.log( "new amount is :", val);
-      this.setState( { amount: val});
-    }
-    console.log( "form state:", this.state);
-    */
-  }
   render() {
     return (
         <form className="well">
@@ -30,16 +13,16 @@ export default class PurchaseProductForm extends React.Component{
           </div>
           <div className="form-group" >
             <label htmlFor="product_name" className="col-sm-2 control-label">Name</label>
-            <input id="product_name" className="input-sm" onChange={this.handleAmount.bind(this)}/>
+            <input id="product_name" className="input-sm" onChange={this.props.productChange}/>
           </div>
           <div className="form-group" >
             <label htmlFor="amount" className="col-sm-2 control-label">Amount</label>
-            <input id="amount" className="input-sm" onChange={this.handleAmount.bind(this)} />
+            <input id="amount" className="input-sm" onChange={this.props.productChange} />
           </div>
           <div className="form-group" >
             <label htmlFor="cost_per" className="col-sm-2 control-label" >Cost Per</label>
             <input id="cost_per" className="input-sm" onChange={this.props.productChange}/>
-            <select id="item_or_weight" className="input-sm">
+            <select id="item_or_weight" className="input-sm" onChange={this.props.productChange}>
               <option value="item">item</option>
               <option value="kilo">kilo</option>
               <option value="gram">gram</option>

@@ -23,6 +23,7 @@ export default class Purchase extends React.Component {
     };
   }
   setTotals( ){
+    console.log( "@setTotals item or weight:", this.state.item_or_weight);
     const {cost_per} = this.state;
     if( this.state.item_or_weight === "item"){
       this.setState( { unit_total: this.state.amount, weight_total: 0});
@@ -31,32 +32,34 @@ export default class Purchase extends React.Component {
       this.setState( { unit_total: 0, weight_total: this.state.amount});
       this.setState( { cost_total: cost_per * this.state.weight_total});
     }
-  }
-  changeAmount( amt){
-    console.log( "change amount");
-    const val = parseFloat( amt);
-    if( !Number.isNaN( val)){
-      console.log( "set amount:", val);
-      this.setState( {amount: val });
-      //  this.setTotals();
-    }
-    console.log( "current state:", this.state);
+    console.log( "new state:", this.state);
   }
   productChange(e){
-    console.log( "product change state:", this.state);
+    console.log( "productChange field id:", e.target.id);
     switch( e.target.id){
       case "product-name": {
         this.setState( {name: e.target.value});
       }
+      case "amount": {
+        const val = parseFloat( e.target.value);
+        if( !Number.isNaN( val)){
+          this.setState( {amount: val }, () => {
+            this.setTotals();
+          });
+        }
+      }
       case "item_or_weight": {
-        this.setState( { item_or_weight: e.target.value});
-        this.setTotals();
+        console.log( "item or weight:", e.target.value);
+        this.setState( { item_or_weight: e.target.value}, () => {
+          this.setTotals();
+        });
       }
       case "cost_per": {
         const val = parseFloat( e.target.value);
         if( !Number.isNaN( val)){
-          this.setState( {cost_per: val });
-          this.setTotals();
+          this.setState( {cost_per: val }, () => {
+            this.setTotals();
+          });
         }
       }
     }
@@ -88,8 +91,7 @@ export default class Purchase extends React.Component {
         <h1>Purchase</h1>
         <PurchaseProductForm categories={this.state.categories}
                             createProduct={this.createProduct.bind(this)}
-                            productChange={this.productChange.bind(this)}
-                            changeAmount={this.changeAmount.bind(this)}/>
+                            productChange={this.productChange.bind(this)}/>
       </div>
     );
   }

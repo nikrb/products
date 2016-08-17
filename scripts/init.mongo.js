@@ -6,7 +6,7 @@ db.product.remove({});
 
 db.product.insert([
   { "category" : "Food", "name" : "carrot", "cost_total" : "0.60",
-    "weight_total" : 6, "unit_total" : 0 }
+    "weight_total" : 6, "unit_total" : 0, stocked: true }
 ]);
 db.category.remove({});
 db.category.insert( [

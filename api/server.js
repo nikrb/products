@@ -65,7 +65,8 @@ app.post('/api/product', function(req, res) {
     name: req.body.name,
     cost_total: req.body.cost_total,
     weight_total: req.body.weight_total,
-    unit_total: req.body.unit_total
+    unit_total: req.body.unit_total,
+    stocked: req.body.stocked
   };
   console.log( "creating new product:", new_product);
   db.collection("product").insertOne(new_product, function(err, result) {
@@ -77,9 +78,11 @@ app.post('/api/product', function(req, res) {
       console.log( "new product id:", newId);
       res.json( { _id: newId,
                   category: new_product.category,
-                  price: new_product.price,
+                  cost_total: new_product.cost_total,
                   stocked: new_product.stocked,
-                  name: new_product.name
+                  name: new_product.name,
+                  unit_total: new_product.unit_total,
+                  weight_total: new_product.weight_total
                 });
     }
   });

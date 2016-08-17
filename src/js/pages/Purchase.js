@@ -20,7 +20,9 @@ export default class Purchase extends React.Component {
       weight_total: 0,
       unit_total: 0,
       item_or_weight:"item",
-      cost_per: 0 // price per iten/weight
+      // TODO: this will go in the price collection, unit_price, see dox/erd
+      cost_per: 0, // price per iten/weight
+      stocked: true // a reasonable default
     };
   }
   // FIXME: we get three updates for each change (e.g. amount)
@@ -37,33 +39,32 @@ export default class Purchase extends React.Component {
     }
   }
   productChange(e){
-    console.log( "productChange field id:", e.target.id);
+    let val = 0;
     switch( e.target.id){
-      case "product_name": {
+      case "product_name":
         this.setState( {name: e.target.value});
-      }
-      case "amount": {
-        const val = parseFloat( e.target.value);
+        break;
+      case "amount":
+        val = parseFloat( e.target.value);
         if( !Number.isNaN( val)){
           this.setState( {amount: val }, () => {
             this.setTotals();
           });
         }
-      }
-      case "item_or_weight": {
-        console.log( "item or weight:", e.target.value);
+        break;
+      case "item_or_weight":
         this.setState( { item_or_weight: e.target.value}, () => {
           this.setTotals();
         });
-      }
-      case "cost_per": {
-        const val = parseFloat( e.target.value);
+        break;
+      case "cost_per":
+        val = parseFloat( e.target.value);
         if( !Number.isNaN( val)){
           this.setState( {cost_per: val }, () => {
             this.setTotals();
           });
         }
-      }
+        break;
     }
   }
   componentWillMount(){
@@ -83,9 +84,9 @@ export default class Purchase extends React.Component {
     // TODO: put up a message bar with close button
   }
   createProduct( e){
-    const { category, name, cost_total, weight_total, unit_total} = this.state;
-    console.log( "creating product:", category, name, cost_total, weight_total, unit_total);
-    ProductActions.createProduct( category, name, cost_total, weight_total, unit_total);
+    const { category, name, cost_total, weight_total, unit_total, stocked } = this.state;
+    ProductActions.createProduct( category, name, cost_total, weight_total,
+                                  unit_total, stocked);
   }
   render(){
     return (

@@ -10,7 +10,7 @@ export default class ProductRow extends React.Component {
     return (
       <tr>
         <td>{name}</td>
-        <td>{this.props.product.price}</td>
+        <td>{this.props.product.cost_total}</td>
       </tr>
     );
   }

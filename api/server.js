@@ -40,7 +40,7 @@ app.get('/api/product', function(req, res) {
       console.error( "GET /api/product failed:", err);
       res.json( { error:err});
     } else {
-      console.log( "get/api/product results:", docs);
+      // console.log( "get/api/product results:", docs);
       res.json(docs);
     }
   });
@@ -52,7 +52,7 @@ app.get( '/api/category', function( req, res){
       console.error( "GET /api/categories failed:", err);
       res.json( { error: err});
     } else {
-      console.log( "GET /api/categories results:", docs);
+      // console.log( "GET /api/categories results:", docs);
       res.json( docs);
     }
   });

@@ -10,6 +10,7 @@ export default class Purchase extends React.Component {
   constructor(){
     super();
     this.getCategories = this.getCategories.bind(this);
+    this.productCreated = this.productCreated.bind(this);
     this.state = {
       categories : [],
       category : "Food",
@@ -78,13 +79,13 @@ export default class Purchase extends React.Component {
     this.setState( { categories: CategoryStore.getAll()});
   }
   productCreated(){
-    console.log( "new product created");
+    console.log( "new product created:", this.state);
     // TODO: put up a message bar with close button
   }
   createProduct( e){
     const { category, name, cost_total, weight_total, unit_total} = this.state;
     console.log( "creating product:", category, name, cost_total, weight_total, unit_total);
-    // ProductActions.createProduct( category, name, cost_total, weight_total, unit_total);
+    ProductActions.createProduct( category, name, cost_total, weight_total, unit_total);
   }
   render(){
     return (

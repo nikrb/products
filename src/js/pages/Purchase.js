@@ -12,7 +12,7 @@ export default class Purchase extends React.Component {
     this.getCategories = this.getCategories.bind(this);
     this.state = {
       categories : [],
-      category : "",
+      category : "Food",
       name : "",
       amount: 12, // number of items or weight
       cost_total : 0,
@@ -38,7 +38,7 @@ export default class Purchase extends React.Component {
   productChange(e){
     console.log( "productChange field id:", e.target.id);
     switch( e.target.id){
-      case "product-name": {
+      case "product_name": {
         this.setState( {name: e.target.value});
       }
       case "amount": {
@@ -83,7 +83,7 @@ export default class Purchase extends React.Component {
   }
   createProduct( e){
     const { category, name, cost_total, weight_total, unit_total} = this.state;
-    console.log( "creating product name:", this.state);
+    console.log( "creating product:", category, name, cost_total, weight_total, unit_total);
     // ProductActions.createProduct( category, name, cost_total, weight_total, unit_total);
   }
   render(){

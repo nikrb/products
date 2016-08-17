@@ -41,6 +41,10 @@ export default class Purchase extends React.Component {
   productChange(e){
     let val = 0;
     switch( e.target.id){
+      case "category":
+        console.log( "new category:", e.target.value);
+        this.setState( {category: e.target.value});
+        break;
       case "product_name":
         this.setState( {name: e.target.value});
         break;

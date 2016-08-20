@@ -1,6 +1,7 @@
 working through learncode.academy "react JS tutorial" on youtube
 starting with my finally cobbled together server with backend to mongo.
 To start:
+
 1. get mongo running
 2. run the server (nodemon to update on change)
    unixy: npm start

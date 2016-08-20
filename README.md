@@ -1,5 +1,7 @@
 working through learncode.academy "react JS tutorial" on youtube
 starting with my finally cobbled together server with backend to mongo.
+Then rejigged the product backend and add create product functionality
+
 To start:
 
 1. get mongo running
@@ -9,7 +11,7 @@ To start:
 3. run webpack to watch for front end changes
    webpack --watch
 
-`Will` uses class instead of react className. This is useful (for him) as he wanted
+`Will` (code academy) uses class instead of react className. This is useful (for him) as he wanted
 to copy his html en-masse without having to rename all the class attribs to className.
 This is done by using the react-html-attrs package in webpack.config.js:
 module.exports = {
